@@ -38,6 +38,8 @@ describe("oeffentliche Oberflaeche von @easytree/contracts", () => {
     // Gegenprobe zur Zeile oben: ohne sie waere das Verbot auch dann gruen,
     // wenn die Datei versehentlich gar nichts mehr exportiert.
     expect(names).toContain("IDEMPOTENCY_HEADER");
+    expect(names).toContain("LocalDateSchema");
     expect(names).toContain("ProblemDocumentSchema");
+    expect(names).toContain("WorksiteDayDtoSchema");
   });
 });
