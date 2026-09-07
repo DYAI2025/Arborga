@@ -22,9 +22,16 @@ describe("LocalDateSchema", () => {
     },
   );
 
-  it("nimmt den 29. Februar eines Schaltjahres an", () => {
-    expect(LocalDateSchema.safeParse("2028-02-29").success).toBe(true);
+  it.each(["0000-01-01", "0000-02-29"])("lehnt das Jahr null in %s ab", (value) => {
+    expect(LocalDateSchema.safeParse(value).success).toBe(false);
   });
+
+  it.each(["0001-01-01", "2028-02-29", "9999-12-31"])(
+    "nimmt das gueltige Grenz- oder Schaltjahrdatum %s an",
+    (value) => {
+      expect(LocalDateSchema.safeParse(value).success).toBe(true);
+    },
+  );
 });
 
 describe("WorksiteDayDtoSchema — Identitaets- und Revisionsfundament", () => {
