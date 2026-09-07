@@ -22,7 +22,7 @@ import { z } from "zod";
 
 import { isValidIsoWeekKey } from "./iso-week.js";
 
-import { IdSchema, InstantSchema } from "../primitives.js";
+import { IdSchema, InstantSchema, LocalDateSchema } from "../primitives.js";
 
 /**
  * Halb-offenes Intervall als Transportform. Entspricht `TimeInterval` der Domain.
@@ -146,6 +146,23 @@ export const SourceVersionSchema = z.strictObject({
 });
 
 export type SourceVersion = z.infer<typeof SourceVersionSchema>;
+
+/**
+ * Kleinster revisionssicherer Transportbezug eines Baustellentags (EYT-120).
+ *
+ * `worksiteDayId` bleibt ueber Revisionen stabil; `configurationId` bezeichnet
+ * die konkrete revisionsgebundene Tageskonfiguration. Arbeitszeiten gehoeren
+ * nicht zur Identitaet und werden hier bewusst nicht verlangt oder erzeugt.
+ * `orgId` fehlt ebenfalls absichtlich: die Tenant-Autoritaet bleibt serverseitig.
+ */
+export const WorksiteDayDtoSchema = z.strictObject({
+  worksiteDayId: IdSchema,
+  configurationId: IdSchema,
+  worksiteId: IdSchema,
+  localDate: LocalDateSchema,
+});
+
+export type WorksiteDayDto = z.infer<typeof WorksiteDayDtoSchema>;
 
 /**
  * Auswaehlbare Ressource einer Planungswoche — Beschaeftigte oder Baustelle.

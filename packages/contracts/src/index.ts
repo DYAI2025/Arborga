@@ -14,11 +14,12 @@ export {
   IdempotencyKeySchema,
   INSTANT_PATTERN,
   InstantSchema,
+  LocalDateSchema,
   ProblemDocumentSchema,
   cursorPage,
   newIdempotencyKey,
 } from "./primitives.js";
-export type { IdempotencyKey, Instant, ProblemDocument } from "./primitives.js";
+export type { IdempotencyKey, Instant, LocalDate, ProblemDocument } from "./primitives.js";
 
 export { GATEWAY_FAILURES, gatewayFailed, gatewayOk } from "./gateway.js";
 export type { GatewayFailure, GatewayResult } from "./gateway.js";
@@ -40,6 +41,7 @@ export {
   PublishedPlanVersionSchema,
   TimeIntervalDtoSchema,
   ValidatePlanCommandSchema,
+  WorksiteDayDtoSchema,
 } from "./planning/schemas.js";
 export type {
   AssignmentDto,
@@ -55,6 +57,7 @@ export type {
   PublishedPlanVersion,
   TimeIntervalDto,
   ValidatePlanCommand,
+  WorksiteDayDto,
 } from "./planning/schemas.js";
 export type { PlanningGateway } from "./planning/gateway.js";
 
